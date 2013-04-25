@@ -1,0 +1,34 @@
+<div id="main">
+  <p class="to_back">←<a href="javascript:void(0);">トップページ</a></p>
+  <p>★学科・コースを確認、追加を行えます。</p>
+  <article>
+    <table>
+      <tr>
+        <!--<th>course_id-->
+        <th>学科名
+        <th>コース名
+      {foreach from=$conf_list item=v}
+      <tr>
+        <!--<td>{$v.course_id}-->
+        <td>{$v.department_name}
+        <td>{$v.course_name}
+      {/foreach}
+    </table>
+    <a
+      id="add_course"
+      class="standard_button"
+      href="javascript:void(0);"
+      >コースを追加</a>
+  </article>
+</div>
+
+<script>
+$(function(){
+  change_subtitle('学科とコースの確認', 'show_courses')
+  multiple_bind_audio_with_command
+  ( [ [ '.to_back'   , 'to_back'   , 'main'      ]
+    , [ '#add_course', 'add_course', 'add_course']
+    ]
+  )
+})
+</script>

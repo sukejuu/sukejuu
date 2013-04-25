@@ -1,0 +1,97 @@
+<div id="main">
+  <p class="to_back">←<a href="javascript:void(0);">トップページ</a></p>
+  <p>★スケジュールを確認できます。</p>
+  <article>
+    
+    <!-- filter -->
+    <div id="filters">
+      
+      <p>分類：</p>
+      <div id="category">
+        <ul>
+          {foreach from=$categories item=c}
+          <li><input type="checkbox" value="{$c.id}" checked>{$c.name}
+          {/foreach}
+        </ul>
+      </div>
+      
+      <div id="filter_params">
+        <form>
+          
+          <!-- grade -->
+          <select id="grade">
+            <option value="null" selected>[全ての学年]</option>
+            {foreach from=[1,2,3,4] item=v}
+            <option value="{$v}">{$v}</option>
+            {/foreach}
+          </select>
+          
+          <!-- department -->
+          <select id="department">
+            <option value="null" selected>[全ての学科]</option>
+            {foreach from=$departments item=d}
+            <option value="{$d.id}">{$d.name}</option>
+            {/foreach}
+          </select>
+          
+          <!-- course -->
+          <select id="course">
+            <option value="null" selected>[全てのコース]</option>
+            {foreach from=$courses item=c}
+            <option value="{$c.id}">{$c.name}</option>
+            {/foreach}
+          </select>
+          
+          <!-- date -->
+          <div>
+            表示期間（始）：
+            <input id="date_begin"
+              type="date"
+              min="{$date_min}"
+              max="{$date_max}"
+              value="{$date_today}"
+              >
+            表示期間（終）：
+            <input id="date_end"
+              type="date"
+              min="{$date_min}"
+              max="{$date_max}"
+              value="{$date_max}"
+              >
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- schedules -->
+    <table id="schedules" class="zebra">
+    </table>
+
+    <!-- schedule detail -->
+    <article id="schedule_detail">
+      <header>
+        <h1 class="schedule_title"> - </h1>
+        <p>分　類:   <span class="schedule_category"  > - </span></p>
+        <p>学　科:   <span class="schedule_department"> - </span></p>
+        <p>コース: <span class="schedule_course"    > - </span></p>
+        <p>学　年:   <span class="schedule_grade"     > - </span></p>
+      </header>
+      <pre class="schedule_content"> - </pre>
+      <footer>
+        <p>記入者: <address class="schedule_author"> - </address></p>
+      </footer>
+    </article>
+
+    <!-- calendar -->
+    <table id="calendar" class="calendar">
+    </table>
+  </article>
+</div>
+
+<script>
+var categories  = JSON.parse('{json_encode($categories)}')
+var departments = JSON.parse('{json_encode($departments)}')
+var courses     = JSON.parse('{json_encode($courses)}')
+var schedules   = JSON.parse('{json_encode($schedules)}')
+</script>
+<script src="/script/show_schedule_system.js"></script>
