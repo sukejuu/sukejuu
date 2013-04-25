@@ -46,9 +46,14 @@ var filtered_schedules = function()
   var f = function(v)
   {
     // test category
-    if( ! $('#category input[type=checkbox][value='
+    console.log(
+          $('#category input[type=checkbox][value='
           + parseInt(v.category_id)
           + ']').attr('checked')
+    )
+    if( ! $('#category input[type=checkbox][value='
+          + parseInt(v.category_id)
+          + ']').prop('checked')
     )
       return false;
     
