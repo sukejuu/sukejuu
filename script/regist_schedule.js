@@ -29,9 +29,9 @@ var set_delegate = function()
   delegate.change
   ( function()
     {
-      var f = delegate.attr('checked') === 'checked'
+      var f = delegate.prop('checked')
       $('#schedules input[type=checkbox]')
-        .attr('checked', f)
+        .prop('checked', f)
     }
   )
 }
@@ -43,7 +43,7 @@ var selected_schedule_id = function()
       .not('[data-delegate]')
       .filter
       ( function(k,v)
-        { return $(v).attr('checked') === 'checked' }
+        { return $(v).prop('checked') }
       )
   
   var targets = []
