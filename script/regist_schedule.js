@@ -68,7 +68,13 @@ var remove_schedule = function()
   }
   
   console.log('remove_schedules', ts)
-  command('remove_schedules', ts)
+  command('remove_schedules', ts
+    , function(r)
+      {
+        if(r.return)
+          command('regist_schedule');
+      }
+  )
 }
 
 var modify_schedule = function()
