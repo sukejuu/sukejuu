@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-04-24 00:15:34
+<?php /* Smarty version Smarty-3.1.13, created on 2013-04-25 19:58:34
          compiled from "./templates/regist_schedule_new.html" */ ?>
 <?php /*%%SmartyHeaderCode:246368710517698d9c71934-50391108%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aee23fe25a5328d07233b8753f1fb374032c05e2' => 
     array (
       0 => './templates/regist_schedule_new.html',
-      1 => 1366730126,
+      1 => 1366887488,
       2 => 'file',
     ),
   ),
@@ -25,11 +25,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'departments' => 0,
     'd' => 0,
     'courses' => 0,
-    'date_min' => 0,
-    'date_max' => 0,
-    'date_today' => 0,
+    'datetime_now' => 0,
     'is_modify' => 0,
     'schedules' => 0,
+    'schedule' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -110,25 +109,17 @@ $_smarty_tpl->tpl_vars['c']->_loop = true;
 
       <!-- invoke_time -->
       開始日時:
-      <input id="date_begin"
-        type="date"
-        min="<?php echo $_smarty_tpl->tpl_vars['date_min']->value;?>
-"
-        max="<?php echo $_smarty_tpl->tpl_vars['date_max']->value;?>
-"
-        value="<?php echo $_smarty_tpl->tpl_vars['date_today']->value;?>
+      <input id="datetime_begin"
+        type="datetime-local"
+        value="<?php echo $_smarty_tpl->tpl_vars['datetime_now']->value;?>
 "
         >
       
       <!--  -->
       終了日時:
-      <input id="date_end"
-        type="date"
-        min="<?php echo $_smarty_tpl->tpl_vars['date_min']->value;?>
-"
-        max="<?php echo $_smarty_tpl->tpl_vars['date_max']->value;?>
-"
-        value="<?php echo $_smarty_tpl->tpl_vars['date_max']->value;?>
+      <input id="datetime_end"
+        type="datetime-local"
+        value="<?php echo $_smarty_tpl->tpl_vars['datetime_now']->value;?>
 "
         >
       <!-- title -->
@@ -137,7 +128,7 @@ $_smarty_tpl->tpl_vars['c']->_loop = true;
       
       <!-- content -->
       内容:
-      <textarea id="#content"></textarea>
+      <textarea id="content"></textarea>
       
     </form>
   </div>
@@ -162,13 +153,79 @@ var schedules   = JSON.parse('<?php echo json_encode($_smarty_tpl->tpl_vars['sch
 <script>
 var is_modify = <?php echo $_smarty_tpl->tpl_vars['is_modify']->value;?>
 
+var schedule
+try { schedule = JSON.parse('<?php echo $_smarty_tpl->tpl_vars['schedule']->value;?>
+') } catch(e) { }
 </script>
 <script>
-console.log(-1)
+var params = function()
+{
+  var r = is_modify ? schedule : { }
+
+  r.category_id = $('#category').val()
+  r.grade       = $('#grade').val()
+  r.course_id   = $('#course').val()
+  r.invoke_time = $('#datetime_begin')[0].valueAsNumber
+  r.time_span   = $('#datetime_end')[0].valueAsNumber - r.invoke_time
+  r.title       = $('#title').val()
+  r.content     = $('#content').val()
+
+  return r;
+}
+
+var add_or_modify_schedule = function()
+{
+  var c = (is_modify ? 'modify' : 'add') + '_schedule'
+  var ps = params()
+  console.log(c, ps)
+  command
+  ( c
+  , ps
+  , function(r)
+    {
+      console.log(r)
+      if(r.return)
+        command('regist_schedule')
+      else
+        audio_play_function('failed')()
+    }
+  )
+}
+
 $(function() {
-console.log(-2)
+  
+  var f = function(e)
+  {
+    $(e).unbind('mouseover')
+    $(e).unbind('focus')
+  }
+  
+  var unbinds = 
+  [ '#category'
+  , '#grade'
+  , '#department'
+  , '#course'
+  , '#date_begin'
+  , '#date_end'
+  , '#title'
+  , '#content'
+  ]
+
+  for(var k in unbinds)
+    f(unbinds[k])
+  
+  //$('#department').change(update_courses);
+  
   if(is_modify)
+  {
     change_subtitle('予定登記（変更）', 'modify_schedule')
+    $('#category'  ).val(schedule.category_id)
+    $('#grade'     ).val(schedule.grade)
+    $('#department').val(attached_department_id(schedule.course_id))
+    $('#course'    ).val(schedule.course_id)
+    $('#title'     ).val(schedule.title)
+    $('#content'   ).val(schedule.content)
+  }
   else
     change_subtitle('予定登記（新規）', 'add_schedule')
 
@@ -185,9 +242,18 @@ console.log(-2)
   )
   
   $('#add_or_modify_schedule').click(add_or_modify_schedule)
+  $('#datetime_begin').change
+  ( function()
+    {
+      var b = $('#datetime_begin')
+      var e = $('#datetime_end')
+      e.attr('min', b.val())
+      if(e[0].valueAsNumber < b[0].valueAsNumber)
+        e.val(b.val())
+    }
+  )
   
-  update_schedules = function() { } 
+  update_schedules = function() { }
 } )
-
 </script>
 <?php }} ?>

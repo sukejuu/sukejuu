@@ -9,13 +9,9 @@ final class c_add_schedule_t
   { 
   }
   public function __invoke()
-  { $s = new Smarty();
-    $s->assign(conf::$default_template_params);
-    $v = $s->fetch('auth_schedule_register.html');
-    
+  {
     $r = new command_return_t;
-    $r->require_change_view = true;
-    $r->view                = $v;
+    $r->return = true;
     return $r;
   }
 }

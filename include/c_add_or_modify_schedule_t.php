@@ -13,12 +13,10 @@ final class c_add_or_modify_schedule_t
   
   public function __construct($parameters)
   {
-    if($parameters !== null)
-    {
-      to_array($parameters);
+    if(is_integer($parameters))
       $this->ps = $parameters;
-    }
   }
+  
   public function __invoke()
   {
     global $log;
@@ -30,7 +28,25 @@ final class c_add_or_modify_schedule_t
     $data = $this->smarty_params();
     
     $s->assign($data);
-    $s->assign('is_modify', $this->ps !== null ? 'true' : 'false');
+    
+    $is_modify = ! is_null($this->ps);
+    
+    $s->assign('is_modify', var_export($is_modify, true) );
+    
+    if( $is_modify )
+    {
+      $ds = main_t::$database->prepare('select * from schedules where id = ?');
+      $log->debug($this->ps);
+      $ds->execute([$this->ps]);
+      if($ds === false)
+        throw new RuntimeException('database query failed');
+      $schedule = $ds->fetch(PDO::FETCH_ASSOC);
+      $log->debug($schedule);
+      $s->assign('schedule', json_encode($schedule) );
+    }
+    
+    $d = date('c');
+    $s->assign('datetime_now', substr($d,0,strlen($d)-6));
     
     $v = $s->fetch('regist_schedule_new.html');
     
