@@ -111,7 +111,9 @@ $(function(){
   $('#remove_schedule').click(remove_schedule)
   $('#modify_schedule').click(modify_schedule)
   $('#add_schedule'   ).click(add_schedule   )
-  
+   
   update_schedules = update_schedules_removable
+  $('#category input[type=checkbox]').each(function() {$(this).change(update_schedules) } )
+  
   update_schedules()
 })
