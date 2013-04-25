@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-04-25 20:51:33
+<?php /* Smarty version Smarty-3.1.13, created on 2013-04-25 21:52:54
          compiled from "./templates/regist_schedule_new.html" */ ?>
 <?php /*%%SmartyHeaderCode:246368710517698d9c71934-50391108%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aee23fe25a5328d07233b8753f1fb374032c05e2' => 
     array (
       0 => './templates/regist_schedule_new.html',
-      1 => 1366890683,
+      1 => 1366894354,
       2 => 'file',
     ),
   ),
@@ -32,7 +32,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_517698d9ce0572_60954816')) {function content_517698d9ce0572_60954816($_smarty_tpl) {?><article>
+<?php if ($_valid && !is_callable('content_517698d9ce0572_60954816')) {function content_517698d9ce0572_60954816($_smarty_tpl) {?><nav>
   ←
   <a
     class="to_main"
@@ -44,7 +44,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     href="javascript:void(0);"
     >予定の削除、変更、追加</a>
   <p>★予定の変更・新規追加を行うでござる</p>
+</nav>
 
+<article>
   <div id="regist">
     <form>
 

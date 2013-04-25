@@ -1,55 +1,45 @@
-<div id="main">
-  
-  <!--	
-  <header>
-  </header>
-  -->
-  
-  ←
-  <a
-    class="to_main"
-    href="javascript:void(0);"
-    >トップページ</a>
-  &gt;
-  <a
-    class="to_show_courses"
-    href="javascript:void(0);"
-    >学科・コース変更、追加</a>
-  <p>★学科とコース新規追加を行うでござる</p>
-  
-  <article>
-    <form>
-      <input
-        id="is_text"
-        type="checkbox"
-        >←新設学科の場合はここをチェックして学科名を手打ちするでござる
-      
-      <br />
-      <br />
-        
-      <div>
-        学科名：
-        <select id="department_select">
-          {foreach from=$departments item=v}
-          <option value="{$v}">{$v}</option>
-          {/foreach}
-        </select>
-        <input id="department_text" class="hidden">
-      </div>
-      <div>
-        コース名：
-        <input id="course_text">
-      </div>
-    </form>
+<nav>
+←
+<a
+  class="to_main"
+  href="javascript:void(0);"
+  >トップページ</a>
 
-  
-    <a
-      id="add_course"
-      class="standard_button"
-      href="javascript:void(0);"
-      >追加</a>
-  
-  </article>
-</div>
+&gt;
+<a
+  class="to_show_courses"
+  href="javascript:void(0);"
+  >学科・コース変更、追加</a>
+<p>★学科とコース新規追加を行うでござる</p>
+</nav>
+
+<article>
+  <form>
+    <input
+      id="is_text"
+      type="checkbox"
+      >←新設学科の場合はここをチェックして学科名を手打ちするでござる
+      
+    <div>
+      学科名：
+      <select id="department_select">
+        {foreach from=$departments item=v}
+        <option value="{$v}">{$v}</option>
+        {/foreach}
+      </select>
+      <input id="department_text" class="hidden">
+    </div>
+    <div>
+      コース名：
+      <input id="course_text">
+    </div>
+  </form>
+
+  <a
+    id="add_course"
+    class="standard_button"
+    href="javascript:void(0);"
+    >追加</a>
+</article>
 
 <script src="/script/add_course.js"></script>

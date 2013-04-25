@@ -1,26 +1,31 @@
-<div id="main">
-  <p class="to_back">←<a href="javascript:void(0);">トップページ</a></p>
+<nav>
+  ←
+  <a
+    href="javascript:void(0);"
+    class="to_back"
+    >トップページ</a></p>
   <p>★学科・コースを確認、追加を行えます。</p>
-  <article>
-    <table>
-      <tr>
-        <!--<th>course_id-->
-        <th>学科名
-        <th>コース名
-      {foreach from=$conf_list item=v}
-      <tr>
-        <!--<td>{$v.course_id}-->
-        <td>{$v.department_name}
-        <td>{$v.course_name}
-      {/foreach}
-    </table>
-    <a
-      id="add_course"
-      class="standard_button"
-      href="javascript:void(0);"
-      >コースを追加</a>
-  </article>
-</div>
+</nav>
+
+<article>
+  <table>
+    <tr>
+      <!--<th>course_id-->
+      <th>学科名
+      <th>コース名
+    {foreach from=$conf_list item=v}
+    <tr>
+      <!--<td>{$v.course_id}-->
+      <td>{$v.department_name}
+      <td>{$v.course_name}
+    {/foreach}
+  </table>
+  <a
+    id="add_course"
+    class="standard_button"
+    href="javascript:void(0);"
+    >コースを追加</a>
+</article>
 
 <script>
 $(function(){
