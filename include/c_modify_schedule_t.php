@@ -2,6 +2,7 @@
 
 require_once('command_i.php');
 require_once('command_return_t.php');
+require_once('c_auth_t.php');
 
 trait schedule_validator_trait
 {
@@ -82,16 +83,19 @@ trait schedule_validator_trait
 }
 
 final class c_modify_schedule_t
-  implements command_i
+  extends c_auth_t
 {
   use schedule_validator_trait;
   
   private $ps;
   
-  public function __construct($parameters)
+  public function construct($parameters)
   {
     global $log;
     $log->info(get_class($this).'::__construct');
+    
+    if(!$this->is_wheel)
+      throw new RuntimeException('permission denided');
     
     if(!is_null($parameters))
     {
@@ -100,7 +104,7 @@ final class c_modify_schedule_t
     }
   }
   
-  public function __invoke()
+  public function invoke()
   {
     global $log;
     $log->info(get_class($this).'::__invoke');

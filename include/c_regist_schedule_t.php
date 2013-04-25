@@ -3,17 +3,20 @@
 require_once('command_i.php');
 require_once('command_return_t.php');
 require_once('c_show_schedules_t.php');
+require_once('c_auth_t.php');
 
 final class c_regist_schedule_t
-  implements command_i
+  extends c_auth_t
 {
   use show_schedules_trait;
   
-  public function __construct($parameters)
+  public function construct($parameters)
   {
+    if(!$this->is_wheel)
+      throw new RuntimeException('permission denided');
   }
 
-  public function __invoke()
+  public function invoke()
   {
     global $log;
     $log->info(get_class($this).'::invoke');

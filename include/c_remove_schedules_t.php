@@ -2,14 +2,18 @@
 
 require_once('command_i.php');
 require_once('command_return_t.php');
+require_once('c_auth_t.php');
 
 final class c_remove_schedules_t
-  implements command_i
+  extends c_auth_t
 {
   private $ps;
 
-  public function __construct($parameters)
+  public function construct($parameters)
   {
+    if(!$this->is_wheel)
+      throw new RuntimeException('permission denided');
+    
     if(!is_null($parameters))
     {
       to_array($parameters);
@@ -17,7 +21,7 @@ final class c_remove_schedules_t
     }
   }
 
-  public function __invoke()
+  public function invoke()
   {
     global $log;
     $log->info(get_class($this).'::__invoke');
