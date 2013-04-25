@@ -119,7 +119,13 @@ $(function(){
   $('#add_schedule'   ).click(add_schedule   )
    
   update_schedules = update_schedules_removable
-  $('#category input[type=checkbox]').each(function() {$(this).change(update_schedules) } )
+  $
+  ( '#category input[type=checkbox]'
+  + ', #date_begin'
+  + ', #date_end'
+  + ', #course'
+  + ', #grade'
+  ).each(function() {$(this).change(update_schedules) } )
   
   update_schedules()
 })
