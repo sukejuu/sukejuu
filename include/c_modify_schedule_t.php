@@ -12,31 +12,71 @@ trait schedule_validator_trait
     
     $p = main_t::$database->query('select count(*) from categories where id = '.$s['category_id']);
     if($p->fetch(PDO::FETCH_NUM)[0] < 1)
+    {
+      $log->warn('invalid category_id');
       return false;
-      
-    $p = main_t::$database->query('select count(*) from courses where id = '.$s['course_id']);
-    if($p->fetch(PDO::FETCH_NUM)[0] < 1)
-      return false;
-      
-    $p = main_t::$database->query('select count(*) from users where id = '.$s['register_user_id']);
-    if($p->fetch(PDO::FETCH_NUM)[0] < 1)
-      return false;
-      
-    $p = main_t::$database->query('select count(*) from users where id = '.$s['assigned_user_id']);
-    if($p->fetch(PDO::FETCH_NUM)[0] < 1)
-      return false;
-      
-    if($s['grade'] < 0 || $s['grade'] > 4)
-      return false;
+    }
     
+    if($s['course_id'] !== 0)
+    {
+      $p = main_t::$database->query('select count(*) from courses where id = '.$s['course_id']);
+      if($p->fetch(PDO::FETCH_NUM)[0] < 1)
+      {
+        $log->warn('invalid course_id');
+        return false;
+      }
+    }
+    
+    if(array_key_exists('register_user_id', $s))
+    {
+      $p = main_t::$database->query('select count(*) from users where id = '.$s['register_user_id']);
+      if($p->fetch(PDO::FETCH_NUM)[0] < 1)
+      {
+        $log->warn('invalid register_user_id');
+        return false;
+      }
+    }
+    
+    if(array_key_exists('assigned_user_id', $s))
+    {
+      $p = main_t::$database->query('select count(*) from users where id = '.$s['assigned_user_id']);
+      if($p->fetch(PDO::FETCH_NUM)[0] < 1)
+      {
+        $log->warn('invalid assigned_user_id');
+        return false;
+      }
+    }
+    
+    if($s['grade'] < 0 || $s['grade'] > 4)
+    {
+      $log->warn('invalid grade');
+      return false;
+    }
+    
+    if(strlen($s['title']) < 1)
+    {
+      $log->warn('invalid title; hint empty');
+      return false;
+    }
+    
+    if(strlen($s['content']) < 1)
+    {
+      $log->warn('invalid content; hint empty');
+      return false;
+    }
+
     if($force_escape)
     {
-      $parameters['title']   = htmlspecialchars($parameters['title']);
-      $parameters['content'] = htmlspecialchars($parameters['content']);
+      $s['title']   = htmlspecialchars($s['title']);
+      $s['content'] = htmlspecialchars($s['content']);
     }
     else if(strpbrk($s['title'], '<'))
-        return false;
+    {
+      $log->warn('invalid title; hint HTML tag');
+      return false;
+    }
     
+    $log->info('validate ok');
     return true;
   }
 }

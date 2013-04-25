@@ -99,6 +99,8 @@ var params = function()
   r.category_id = $('#category').val()
   r.grade       = $('#grade').val()
   r.course_id   = $('#course').val()
+  if(typeof r.course_id !== typeof 0)
+    r.course_id = 0
   r.invoke_time = $('#datetime_begin')[0].valueAsNumber
   r.time_span   = $('#datetime_end')[0].valueAsNumber - r.invoke_time
   r.title       = $('#title').val()

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-04-25 19:58:34
+<?php /* Smarty version Smarty-3.1.13, created on 2013-04-25 20:51:33
          compiled from "./templates/regist_schedule_new.html" */ ?>
 <?php /*%%SmartyHeaderCode:246368710517698d9c71934-50391108%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aee23fe25a5328d07233b8753f1fb374032c05e2' => 
     array (
       0 => './templates/regist_schedule_new.html',
-      1 => 1366887488,
+      1 => 1366890683,
       2 => 'file',
     ),
   ),
@@ -165,6 +165,8 @@ var params = function()
   r.category_id = $('#category').val()
   r.grade       = $('#grade').val()
   r.course_id   = $('#course').val()
+  if(typeof r.course_id !== typeof 0)
+    r.course_id = 0
   r.invoke_time = $('#datetime_begin')[0].valueAsNumber
   r.time_span   = $('#datetime_end')[0].valueAsNumber - r.invoke_time
   r.title       = $('#title').val()
