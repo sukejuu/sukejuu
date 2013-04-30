@@ -96,11 +96,11 @@ final class c_add_course_t
       throw new RuntimeException('database failed');
     
     if( ! (bool) $s->fetch(PDO::FETCH_NUM)[0] )
-      $s = main_t::$database->query
-        ( 'insert into departments(name) values('
-        . $this->ps['department']
-        . ')'
-        );
+    {
+      $log->debug('insert department');
+      $s = main_t::$database->prepare('insert into departments(name) values(?)');
+      $s->execute([ $this->ps['department'] ]);
+    }
   }
 
   private function invoke_show()
