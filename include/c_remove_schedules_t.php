@@ -11,9 +11,6 @@ final class c_remove_schedules_t
 
   public function construct($parameters)
   {
-    if(!$this->is_wheel)
-      throw new RuntimeException('permission denided');
-    
     if(!is_null($parameters))
     {
       to_array($parameters);
@@ -25,6 +22,9 @@ final class c_remove_schedules_t
   {
     global $log;
     $log->info(get_class($this).'::__invoke');
+    
+    if(!$this->is_wheel)
+      throw new RuntimeException('permission denided');
     
     $log->info($this->ps);
     

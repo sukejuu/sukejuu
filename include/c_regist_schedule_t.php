@@ -12,14 +12,15 @@ final class c_regist_schedule_t
   
   public function construct($parameters)
   {
-    if(!$this->is_wheel)
-      throw new RuntimeException('permission denided');
   }
 
   public function invoke()
   {
     global $log;
     $log->info(get_class($this).'::invoke');
+    
+    if(!$this->is_wheel)
+      throw new RuntimeException('permission denided');
     
     $s = new Smarty();
     $s->assign(conf::$default_template_params);

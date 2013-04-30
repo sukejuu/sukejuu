@@ -94,9 +94,6 @@ final class c_modify_schedule_t
     global $log;
     $log->info(get_class($this).'::__construct');
     
-    if(!$this->is_wheel)
-      throw new RuntimeException('permission denided');
-    
     if(!is_null($parameters))
     {
       to_array($parameters);
@@ -108,6 +105,10 @@ final class c_modify_schedule_t
   {
     global $log;
     $log->info(get_class($this).'::__invoke');
+    
+    if(!$this->is_wheel)
+      throw new RuntimeException('permission denided');
+    
     $log->info($this->ps);
     
     $r = new command_return_t;

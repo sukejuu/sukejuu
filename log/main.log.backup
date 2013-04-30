@@ -1,0 +1,14 @@
+2013-04-30T23:45:44+09:00 main INFO  /tmp/sukejuu/main.php 50 main_t::__construct
+2013-04-30T23:45:44+09:00 main INFO  /tmp/sukejuu/main.php 53 database is opened ( sqlite:database.sqlite3/main )
+2013-04-30T23:45:44+09:00 main INFO  /tmp/sukejuu/main.php 58 main_t::__invoke
+2013-04-30T23:45:44+09:00 main INFO  /tmp/sukejuu/main.php 80 main_t::session_initialize
+2013-04-30T23:45:44+09:00 main INFO  /tmp/sukejuu/main.php 93 session_id: ise43l30e4b0l7ajuj221q8sl5
+2013-04-30T23:45:44+09:00 main DEBUG /tmp/sukejuu/main.php 94 session: Array
+(
+)
+
+2013-04-30T23:45:44+09:00 main INFO  /tmp/sukejuu/include/reciever_t.php 9 reciever::__invoke
+2013-04-30T23:45:44+09:00 main INFO  /tmp/sukejuu/include/reciever_t.php 14 reciever::try_invoke
+2013-04-30T23:45:44+09:00 main INFO  /tmp/sukejuu/include/c_auth_t.php 40 is_authorized: false (session-id: ise43l30e4b0l7ajuj221q8sl5 )
+2013-04-30T23:45:44+09:00 main INFO  /tmp/sukejuu/include/c_add_course_t.php 15 c_add_course_t::__construct
+2013-04-30T23:45:44+09:00 main WARN  /tmp/sukejuu/include/reciever_t.php 41 exception: permission denided

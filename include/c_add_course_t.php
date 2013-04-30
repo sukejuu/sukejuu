@@ -14,9 +14,6 @@ final class c_add_course_t
     global $log;
     $log->info(get_class($this).'::__construct');
     
-    if(!$this->is_wheel)
-      throw new RuntimeException('permission denided');
-    
     if(!is_null($parameters))
     {
       to_array($parameters);
@@ -29,6 +26,9 @@ final class c_add_course_t
   {
     global $log;
     $log->info(get_class($this).'::__invoke');
+    
+    if(!$this->is_wheel)
+      throw new RuntimeException('permission denided');
     
     return (is_null($this->ps))
       ? $this->invoke_show()

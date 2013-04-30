@@ -38,7 +38,9 @@ final class reciever_t
         ;
     }
     catch(Exception $e)
-    { $log->warn('exception: '.$e->getMessage());
+    { 
+      $log->debug('!!!!!!! '.$e);
+      $log->warn('exception: '.$e->getMessage());
       $command = new c_error_t;
     }
     $i = new invoker_t;
