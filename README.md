@@ -48,9 +48,9 @@ __見る  設定  登録__
 - 絵で説明して欲しい  
 - etc...
 
-上記に当てはまる場合は下記の別途マニュアルを参照するでござる。
+上記に当てはまる場合は下記の別途マニュアルを参照するでござる。  
 [マニュアル](documents/sources/user_manualuser_manual.md "user_manual")  
-[オンラインマニュアル](https://github.com/sukejuu/sukejuu/blob/master/README.md "on_line_user_manual")
+[オンラインマニュアル](https://github.com/sukejuu/sukejuu/blob/master/documents/sources/user_manual/user_manual.md "on_line_user_manual")
 
 ###3.1 使用したもの及びコピーライト  
 
