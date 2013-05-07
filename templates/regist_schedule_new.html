@@ -17,61 +17,75 @@
     <form>
 
       <!-- category -->
-      分類:
+      <div class="class_regist">
+      <h4>分類:</h4>
       <select id="category">
         {foreach from=$categories item=c}
         <option value="{$c.id}">{$c.name}</option>
         {/foreach}
       </select>
+      </div>
       
       <!-- grade -->
-      学年:
+      <div class="class_regist">
+      <h4>学年:</h4>
       <select id="grade">
         <option value="0">[全ての学年] 
         {foreach from=[1,2,3,4] item=v}
         <option value="{$v}">{$v}
         {/foreach}
       </select>
+      </div>
 
       <!-- department -->
-      学科: 
+      <div class="class_regist">
+      <h4>学科:</h4> 
       <select id="department">
         <option value="null" selected>[全ての学科]</option>
         {foreach from=$departments item=d}
         <option value="{$d.id}">{$d.name}</option>
         {/foreach}
       </select>
+      </div>
 
       <!-- course -->
-      コース: 
+      <div class="class_regist">
+      <h4>コース:</h4> 
       <select id="course">
         <option value="null" selected>[全てのコース]</option>
         {foreach from=$courses item=c}
         <option value="{$c.id}">{$c.name}</option>
         {/foreach}
       </select>
+      </div>
 
       <!-- invoke_time -->
-      開始日時:
+      <div class="class_regist">
+	     <h4>開始日時:<h4>
       <input id="datetime_begin"
         type="datetime-local"
         value="{$datetime_now}"
         >
       
       <!--  -->
-      終了日時:
+      <h4>終了日時:</h4>
       <input id="datetime_end"
         type="datetime-local"
         value="{$datetime_now}"
         >
+        </div>
+        
       <!-- title -->
-      件名:
+      <div class="class_regist">
+      <h4>件名:</h4>
       <input id="title">
+      </div>
       
       <!-- content -->
-      内容:
+      <div class="class_regist">
+      <h4>内容:</h4>
       <textarea id="content"></textarea>
-      
+      </div>
     </form>
   </div>
   <a
